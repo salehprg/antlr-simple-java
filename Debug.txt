@@ -1,0 +1,62 @@
+class test implements Movable with Plottable {
+var myArray : new Array [Double] (4);
+private var px: Int, py: Int;
+Point (Int px = 0, Int py = 0) {
+this.px = px;
+this.py = py;
+}
+Int moveHorizontal (Int step) {
+px += step;
+return px;
+}
+var myVar : Int = 25, myStr : String;
+var point : new Point(1 , 2);
+const origin : new Point();
+for (var obj in myList ) {
+newList.add (obj.name);
+}
+while (test < myVar) {
+var point2 : new Point(test , test);
+}
+do {
+var myVar : Int = 25, myStr : String;
+} while (test < myVar)
+if (test + 1 < 5) {
+var myVar : Int = 25, myStr : String;
+}
+elif (test == 5) {
+var myVar : Int = 25, myStr : String;
+}
+else {
+var myVar : Int = 25, myStr : String;
+}
+switch (name) {
+case "Jan":
+print("it’s January");
+break;
+case "Feb":
+case "Dec":
+print("close enough");
+break;
+default:
+print("try again");
+}
+Double divide (Int num1, Int num2) {
+var result : Double;
+result = num1 / num2;
+return result;
+}
+var id : Int = 9812762000;
+var grade : Double = 18.25, bonus: Double = 0.5;
+print(stuInfo);
+try {
+print(stuInfo);
+}
+on ExceptionName catch (test) {
+print(stuInfo);
+}
+// or:
+catch (variable_name) {
+print(stuInfo);
+}
+}
