@@ -104,6 +104,15 @@ switchBody : Case expression ':' caseBody (Break EndLine)? ;
 switch : Switch '('expression')' '{' switchBody* default?'}';
 //---------------------------
 
+
+//-------------TryCatch-----------
+
+exception_name : Identifier;
+catchh : Catch '(' variableName ')';
+
+try : Try '{' actions '}' ( (On exception_name (catchh)? '{' actions '}')? (catchh '{' actions '}')?);
+
+//--------------------------
 //------------Classes-----------
 
 className : Identifier;
@@ -113,7 +122,7 @@ implementName : Identifier;
 extend : Extends parentName;
 implements : Implements implementName ('with' implementName)*;
 
-classBody : '{' actions '}';
+classBody : '{' actions  try? '}';
 
 class : Class className  extend? implements? classBody;
 //---------------------------
