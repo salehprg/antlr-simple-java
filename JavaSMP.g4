@@ -1,6 +1,6 @@
 grammar JavaSMP;
 
-start : (importType | class | variables) * EOF;
+start : (importType | class) * EOF;
 
 actions : (variables | functions | for | voids | while | do | if | switch)*;
 
@@ -21,7 +21,7 @@ normalValue : Float | Number | StringValue | variableName('.'variableName)*;
 decType : Var | Const;
 variableName : Identifier;
 object_name : Identifier;
-dataType : NumericalDataType | CharacterDataType | 'new' (Array | object_name) ('<' dataType '>')? '(' objectAssignValue? ')' ;
+dataType : NumericalDataType | CharacterDataType | 'new' (Array | object_name) ('[' dataType ']')? '(' objectAssignValue? ')' ;
 
 operations : normalValue (OperationSign normalValue)*;
 
@@ -188,9 +188,9 @@ Float : Digits+ '.' Digits* | '.'Digits+ | Digits'.' Digits+'e'Sign Digits+;
 
 Number : Digits+;
 
-LetterOrDigit : [a-zA-Z0-9];
+LetterOrDigit : [a-zA-Z0-9$_];
 Digits : [0-9];
-Letter : [a-zA-Z];
+Letter : [a-zA-Z$_];
 
 
 WS : [ \t\r\n\u000C]+ -> channel(HIDDEN);
