@@ -2,7 +2,7 @@ grammar JavaSMP;
 
 start : (importType | class | variables) * EOF;
 
-actions : (variables | functions | for | voids)*;
+actions : (variables | functions | for | voids | while | do | if | switch)*;
 
 //----------Imports-----------
 
@@ -17,12 +17,16 @@ importType : fromImport | imports;
 
 //------------Variables---------
 
+normalValue : Float | Number | StringValue | variableName('.'variableName)*;
 decType : Var | Const;
 variableName : Identifier;
 object_name : Identifier;
 dataType : NumericalDataType | CharacterDataType | 'new' (Array | object_name) ('<' dataType '>')? '(' objectAssignValue? ')' ;
 
-initValue : Float | Number | StringValue | Array'(' objectAssignValue? ')' | variableName('.'variableName)*;
+operations : normalValue (OperationSign normalValue)*;
+
+initValue : normalValue  | Array'(' objectAssignValue? ')' | variableName('.'variableName)* | operations;
+
 
 assignValue : AssignmentSign initValue;
 objectAssignValue : initValue (','initValue)*;
@@ -38,7 +42,8 @@ variables : declareVariable | assignVariable;
 
 //----------Voids-------------
 
-voids : Identifier '.' Identifier '(' objectAssignValue ')' EndLine;
+objectVoid : Identifier('.' Identifier)* '(' objectAssignValue ')' EndLine;
+voids : objectVoid;
 
 //---------------
 //------------Functions----------
@@ -49,12 +54,12 @@ functions : AccessType? dataType? Identifier '(' functionInput ')' '{' functionB
 
 //-------------------------------
 
+conditions : initValue ConditioanlSign initValue (ConditionCheck conditions)*;
 
 //-----------------for--------
 iterator_name : Identifier;
 
 initialization : NumericalDataType? variableName AssignmentSign Number ;
-conditions : initValue ConditioanlSign initValue (ConditionCheck conditions)*;
 incdec : variableName AssignmentSign;
 forBody : actions;
 
@@ -67,8 +72,36 @@ for : For '(' (normalFor | iteratorFor) ')' '{' forBody '}';
 
 //-----------------while--------
 
-while : For '(' (normalFor | iteratorFor) ')' '{' forBody '}';
+whileBody : actions;
+while : While '(' conditions ')' '{' whileBody '}';
 
+//---------------------------
+
+//-------------DoWhile-----------
+
+doBody : actions;
+do : Do '{' doBody '}' While '(' conditions ')' ;
+
+//---------------------------
+
+//-----------------If----------
+
+ifBody : actions;
+elseIf : ElseIf '(' conditions ')' '{' ifBody '}';
+else : Else  '{' ifBody '}';
+
+if : If '(' conditions ')' '{' ifBody '}' elseIf* else?;
+
+//------------------------------
+
+//-------------Switch--------
+caseBody : actions;
+expression : Number | Float | StringValue | variableName;
+default : Default ':' actions (Break EndLine)?;
+
+switchBody : Case expression ':' caseBody (Break EndLine)? ;
+
+switch : Switch '('expression')' '{' switchBody* default?'}';
 //---------------------------
 
 //------------Classes-----------
@@ -86,11 +119,27 @@ class : Class className  extend? implements? classBody;
 //---------------------------
 
 AssignmentSign : '+=' | '-=' | '=' | '++' | '--';
+OperationSign : '+' | '-' | '*' | '/';
 
+Try : 'try';
+On : 'on';
+Catch : 'catch';
+
+Switch : 'switch';
+Case : 'case';
+Break : 'break';
+Default : 'default';
+
+If : 'if';
+Else : 'else';
+ElseIf : 'elif';
 
 For : 'for';
+
 While : 'while';
-ConditioanlSign : '<' | '>' | '<=' | '>=';
+Do : 'do';
+
+ConditioanlSign : '<' | '>' | '<=' | '>=' | '==';
 GT : '>';
 LT : '<';
 LE : '<=';
