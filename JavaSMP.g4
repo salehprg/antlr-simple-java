@@ -2,7 +2,7 @@ grammar JavaSMP;
 
 start : (importType | class | variables) * EOF;
 
-actions : variables* functions*;
+actions : (variables | functions | for | voids)*;
 
 //----------Imports-----------
 
@@ -20,9 +20,9 @@ importType : fromImport | imports;
 decType : Var | Const;
 variableName : Identifier;
 object_name : Identifier;
-dataType : NumericalDataType | CharacterDataType | 'new' (Array | object_name) ('<' dataType '>')? '(' objectAssignValue? ')' | ;
+dataType : NumericalDataType | CharacterDataType | 'new' (Array | object_name) ('<' dataType '>')? '(' objectAssignValue? ')' ;
 
-initValue : Float | Number | StringValue | Array'(' objectAssignValue? ')' | variableName;
+initValue : Float | Number | StringValue | Array'(' objectAssignValue? ')' | variableName('.'variableName)*;
 
 assignValue : AssignmentSign initValue;
 objectAssignValue : initValue (','initValue)*;
@@ -36,6 +36,11 @@ variables : declareVariable | assignVariable;
 
 //---------------------------
 
+//----------Voids-------------
+
+voids : Identifier '.' Identifier '(' objectAssignValue ')' EndLine;
+
+//---------------
 //------------Functions----------
 
 functionInput : dataType varInfo (',' dataType varInfo)*;
@@ -44,6 +49,27 @@ functions : AccessType? dataType? Identifier '(' functionInput ')' '{' functionB
 
 //-------------------------------
 
+
+//-----------------for--------
+iterator_name : Identifier;
+
+initialization : NumericalDataType? variableName AssignmentSign Number ;
+conditions : initValue ConditioanlSign initValue (ConditionCheck conditions)*;
+incdec : variableName AssignmentSign;
+forBody : actions;
+
+normalFor : initialization EndLine conditions EndLine incdec;
+iteratorFor : decType variableName 'in' iterator_name;
+
+for : For '(' (normalFor | iteratorFor) ')' '{' forBody '}';
+
+//---------------------------
+
+//-----------------while--------
+
+while : For '(' (normalFor | iteratorFor) ')' '{' forBody '}';
+
+//---------------------------
 
 //------------Classes-----------
 
@@ -59,9 +85,18 @@ classBody : '{' actions '}';
 class : Class className  extend? implements? classBody;
 //---------------------------
 
-AssignmentSign : '+=' | '-=' | '=';
+AssignmentSign : '+=' | '-=' | '=' | '++' | '--';
 
 
+For : 'for';
+While : 'while';
+ConditioanlSign : '<' | '>' | '<=' | '>=';
+GT : '>';
+LT : '<';
+LE : '<=';
+GE : '>=';
+
+ConditionCheck : '&&' | '||';
 This : 'this';
 Class : 'class';
 Return : 'return';
