@@ -1,6 +1,6 @@
 grammar JavaSMP;
 
-start : importType* variables* class* EOF;
+start : (importType | class | variables) * EOF;
 
 actions : variables* functions*;
 
@@ -19,12 +19,13 @@ importType : fromImport | imports;
 
 decType : Var | Const;
 variableName : Identifier;
-dataType : NumericalDataType | CharacterDataType | 'new' Array ('<' dataType '>')? '(' arrayAssignValue? ')';
+object_name : Identifier;
+dataType : NumericalDataType | CharacterDataType | 'new' (Array | object_name) ('<' dataType '>')? '(' objectAssignValue? ')' | ;
 
-initValue : Float | Number | StringValue | Array'(' arrayAssignValue? ')' | variableName;
+initValue : Float | Number | StringValue | Array'(' objectAssignValue? ')' | variableName;
 
 assignValue : AssignmentSign initValue;
-arrayAssignValue : initValue (','initValue)*;
+objectAssignValue : initValue (','initValue)*;
 typeAndAssign : ':' dataType assignValue?;
 varInfo : variableName (assignValue? | typeAndAssign);
 
@@ -44,7 +45,7 @@ functions : AccessType? dataType? Identifier '(' functionInput ')' '{' functionB
 //-------------------------------
 
 
-//------------Classes------------
+//------------Classes-----------
 
 className : Identifier;
 parentName : Identifier;
