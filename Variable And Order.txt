@@ -1,0 +1,17 @@
+class test {
+
+var myVar : int = 5;
+var myVar : float = 5.5;
+
+float myF = 5.6;
+float test = 4.5e-2;
+float test2 = .5;
+double myDouble = 3.5;
+int test = 5;
+string normalStr = "Hello World! ";
+string interpolate = "Hello ${username + lastname} welcome";
+string interpolateExpr = "Hello ${username + cost + 4 * 2} welcome";
+
+var testOrder = 4 * 5**(2 + 2) / 4 * (2 - 2); 
+
+}

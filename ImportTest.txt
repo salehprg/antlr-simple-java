@@ -1,0 +1,10 @@
+import math; /~ imports all from math
+from math import *; /~ imports all from math
+from root.myMath import random; /~ imports random from root.myMath
+from math import random, floor; /~ imports random and floor from math
+from math import random => rand , floor => fl; /~ imports random as rand
+
+class test
+{
+
+}

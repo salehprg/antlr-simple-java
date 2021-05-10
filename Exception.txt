@@ -1,0 +1,16 @@
+class test {
+
+int test(int xx , int yy)
+{
+    try {
+        res = num1 / num2;
+    }
+    on DivisionByZeroException catch (err) {
+        print ("num 2 = 0");
+        print (err.toStr);
+    }
+    catch (err) {
+        print (err.toSAtring(xx + 4 , yy.str()) , "oops.");
+    }
+}
+}

@@ -1,0 +1,39 @@
+class test {
+
+int test(int xx , int yy)
+{
+    switch (name) {
+        case "Jan":
+            print("it’s January");
+        break;
+        case "Feb":
+        case "Dec":
+            print("close enough");
+        break;
+        default:
+            print("try again");
+    }
+
+    for (myVar = 0; myVar < count && count > 5; myVar++) {
+        sum += myVar;
+    }
+    
+    if (id != 0) {
+        print("Ok ${id}");
+    }
+    elif (id == 0) {
+        print("${id} = 0");
+    }
+    else {
+        print("bad id");
+    }   
+    
+    while (grade > 0) {
+        result += grade;
+    }
+    do {
+        result--;
+    } while (result > 0)
+    
+}
+}

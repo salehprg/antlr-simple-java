@@ -125,7 +125,7 @@ default : Default ':' internalActions (Break EndLine)?;
 
 switchBody : Case expression ':' caseBody (Break EndLine)? ;
 
-switch : Switch LParantesis expression RParantesis LBracet switchBody* default?RBracet;
+switch : Switch LParantesis expression RParantesis LBracet switchBody* default? RBracet;
 
 //--------------------------------------------------------------------------
 

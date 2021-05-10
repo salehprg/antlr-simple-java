@@ -1,0 +1,16 @@
+class test {
+
+Circle func(int xx , int yy)
+{
+    Circle circle = new test();
+    const radius = 5.5;
+    var myNew = new Circle(xx + radius * 2);
+
+    return circle;
+}
+
+void test()
+{
+    print("Hello ${username}");
+}
+}

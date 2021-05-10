@@ -1,0 +1,107 @@
+import math; /~ imports all from math
+from math import *; /~ imports all from math
+from root.myMath import random; /~ imports random from root.myMath
+from math import random, floor; /~ imports random and floor from math
+from math import random => rand; /~ imports random as rand
+
+class test
+{
+var saleh = "Hello ${us + ab} Welcome & 235";
+var point = new Point();
+var point : new Point(1 , 2);
+const origin : new Point();
+Circle func(int xx , int yy)
+{
+    Circle circle = new test();
+    const radius = 5.5;
+    var myNew = new Circle(xx + radius * 2);
+    for(int ii = 0;ii < yy ; ii++)
+    {
+        if(ii <= 10)
+        {
+        print("Done with ${radius} !");
+        }
+    }
+    try {
+        res = num1 / num2;
+    }
+    on DivisionByZeroException catch (err) {
+        print ("num 2 = 0");
+        print (err.toStr);
+    }
+    catch (err) {
+        print (err.toSAtring(xx + 4 , yy.str()) , "oops.");
+    }
+
+    return circle;
+}
+Double divide (Int num1, Int num2) {
+var result : Double;
+result = num1 / num2;
+
+switch (name) {
+case "Jan":
+print("it’s January");
+break;
+case "Feb":
+case "Dec":
+print("close enough");
+break;
+default:
+print("try again");
+}
+
+for (myVar = 0; myVar < count && count > 5; myVar++) {
+sum += myVar;
+}
+
+return result;
+}
+
+var id: Int = 9812762000;
+var grade: Double = 18.25, bonus: Double = 0.5;
+var stuInfo : String = "student ${id} has grade ${grade+bonus}";
+void test()
+{
+    if (id != 0) {
+    print("Ok ${id}");
+    }
+    elif (id == 0) {
+    print("${id} = 0");
+    }
+    else {
+    print("bad id");
+    }   
+    print(stuInfo);
+    
+    for (var obj in myList ) {
+    newList.add (obj.name);
+    }
+    int result = 0;
+    while (grade > 0) {
+    result += grade;
+    }
+    do {
+    result--;
+    } while (result > 0)
+}
+}
+
+class Point implements Movable with Plottable {
+
+const myConst = "Lorem Ipsum"; /~ defining constants
+var myVar : Int = 25, myStr : String; /~ defining two variables,
+/~ one is initiated
+var myArray : new Array [Double] (4); /~ array definition
+const myInitiatedArray = Array (11, 42, 90.25, 43);
+
+private var px: Int, py: Int;
+Point (Int px = 0, Int py = 0) {
+this.px = px;
+this.py = py;
+}
+Int moveHorizontal (Int step) {
+px += step;
+return px;
+}
+}
