@@ -1,7 +1,7 @@
-parser grammar StringParser;
+parser grammar Antlr_Parser;
 
 options {
-    tokenVocab = StringLexer;
+    tokenVocab = Antlr_Lexer;
 }
 
 start : imports  class+ EOF;

@@ -1,4 +1,4 @@
-lexer grammar StringLexer;
+lexer grammar Antlr_Lexer;
 
 //------------Operations------------
 Bitwise : '&' | '^' | '|' | '<<' | '>>';
